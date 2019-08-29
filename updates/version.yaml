@@ -1,0 +1,12 @@
+1.0.1:
+  - First version of OAuth2
+  - Create Oauth Auth Codes Table
+  - create_oauth_auth_codes_table.php
+  - Create Oauth Access Tokens Table
+  - create_oauth_access_tokens_table.php
+  - Create Oauth Refresh Tokens Table
+  - create_oauth_refresh_tokens_table.php
+  - Create Oauth Clients Table
+  - create_oauth_clients_table.php
+  - Create Oauth Personal Access Clients Table
+  - create_oauth_personal_access_clients_table.php

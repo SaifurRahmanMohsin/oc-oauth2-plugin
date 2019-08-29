@@ -1,0 +1,29 @@
+{
+    "name": "mohsin/oc-oauth2-plugin",
+    "type": "october-plugin",
+    "description": "OAuth2 provider for Auth plugin",
+    "homepage": "http://imoz.in",
+    "keywords": ["octobercms", "auth", "oath2", "passport"],
+    "authors": [
+        {
+            "name": "Saifur Rahman Mohsin",
+            "email": "mohsin92@me.com"
+        }
+    ],
+    "require": {
+        "laravel/passport": "~4.0"
+    },
+    "replace": {
+        "illuminate/support": "*",
+        "illuminate/filesystem": "*",
+        "illuminate/container": "*",
+        "illuminate/database": "*",
+        "illuminate/console": "*",
+        "illuminate/queue": "*",
+        "illuminate/session": "*",
+        "illuminate/http": "*",
+        "illuminate/auth": "*",
+        "illuminate/encryption": "*",
+        "illuminate/contracts": "*"
+    }
+}
