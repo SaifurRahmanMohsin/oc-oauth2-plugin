@@ -1,37 +1,18 @@
-# [OAuth2-Plugin](https://github.com/SaifurRahmanMohsin/oc-oauth2-plugin) #
-OAuth2 Provider for Auth plugin of October CMS
+# [OAuth2 Plugin](https://github.com/SaifurRahmanMohsin/oc-oauth2-plugin) #
+OAuth2 provider for Auth plugin of OctoberCMS
 
 ## Introduction ##
 
-This plugin provides OAuth2 provider using Laravel Passport. It is designed to be compatible with a future plugin that is WIP but I have pushed it early since it works fine as a standalone plugin. What this means is that in the future, you will see some breaking changes to this plugin--however, since I have planned to maintain the API signatures of the plugin (see under API heading) you can go ahead and use it with a level of confidence.
+This plugin provides OAuth2 provider using Laravel Passport. This can be used as a standalone plugin as the routes are exposed directly than via the [Rest plugin](https://github.com/SaifurRahmanMohsin/oc-rest-plugin), however, it may be much more difficult to integrate that way as you will have to manually set the API nodes to use the appropriate middleware layer.
 
-[Note: Right now this plugin is mainly been tailored for the Password grant for use in mobile apps. I tested the other grants and it works fine, however I have not documented them yet.]
+[Note: Right now this plugin is mainly been tailored for the Password grant for use in mobile apps. I tested the other grants and it works fine. However, I have not documented them yet.]
 
 ## Creating Clients ##
 
-With this plugin installed, run `php artisan passport:client` to generate the client
+With this plugin installed, run `php artisan passport:client --password` to generate the password client.
 
 ## Configuration ##
-You need to create a config file auth.php in your config folder for configuration that looks something like this:
-
-```
-<?php
-
-return [
-    'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => Backend\Models\User::class,
-        ]
-    ],
-    'guards' => [
-        'api' => [
-            'driver' => 'session',
-            'provider' => 'users',
-        ]
-    ],
-];
-```
+You need to configure the API from the OctoberCMS backend in the Settings page (System > API Configuration).
 
 By default, the API provider will check for the `email` field in order to authenticate the request. If you want to override this, then in your provider's model class define a **findForPassport** method with a single **$username parameter** and return an Eloquent record. In the above configuration, I am using OctoberCMS' Backend user class so you would have to override it using the extension methods only.
 
@@ -51,8 +32,10 @@ password  | The password of the user requesting the token.
 
 For the refresh_token, set the grant_type as **refresh_token** and send the token without other user credentials. If you have doubts on the API, [read this article](https://alexbilbie.com/guide-to-oauth-2-grants) which is accurate to the API that is supported by this plugin.
 
+## Limitation ##
+* For now, this plugin is locked on to work with OctoberCMS's backend user model only. I extend it to all kinds of models in the near future.
+
 ## Coming Soon ##
 * RainLab.User plugin support for better token management as well as support for using username than email for authentication.
-* Settings page to manage configuration.
-* RESTful plugin support for better API management
+* OAuth2 configuration tab in Settings to manage the tokens.
 * Mobile plugin support to allow instance-level token issue, singleton tokens, and other cool features.
